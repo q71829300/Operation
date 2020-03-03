@@ -1,0 +1,15 @@
+#使用fikker新增域名及證書
+
+#腳本說明
+
+fikker_add_host_win.py - 此為windows運行版本
+
+#此腳本使用時需修改的地方，請找尋關鍵字
+
+mypath - 修改路徑
+fname - 修改路徑，此有分cdn及源站
+
+fikker_add_host.py - 此為centos的運行版本
+
+
+
