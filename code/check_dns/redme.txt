@@ -1,0 +1,6 @@
+#檢查清單中的所有域名的CNAME
+dig_CNAME.sh
+#檢查清單中的所有域名的NS
+dig_NS.sh
+#檢查清單中的所有域名的指向IP
+dig_test.sh
