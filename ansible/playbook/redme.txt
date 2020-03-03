@@ -1,0 +1,6 @@
+#建立金鑰
+creat_sshkey.yml
+#安裝nginx及speedtest
+install_nginx_speedtest.yml
+#安裝zabbix
+install_zabbix.yml

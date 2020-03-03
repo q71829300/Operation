@@ -1,0 +1,57 @@
+---
+- hosts: newcdn
+  vars:
+    hname:  "{{ lookup('file','/etc/hostname') }}"
+  tasks:
+    - name: install warehouse
+      yum:
+        name: https://repo.zabbix.com/zabbix/4.2/rhel/7/x86_64/zabbix-release-4.2-1.el7.noarch.rpm
+        state: present
+    - name: clean all
+      command: yum clean all
+    - name: install zabbix
+      yum:
+        name: zabbix-agent
+        state: present
+    - name: change zabbix conf1
+      command: sed -i 's/Server=127.0.0.1/Server=192.168.0.1/' /etc/zabbix/zabbix_agentd.conf
+    - name: change zabbix conf2
+      command: sed -i 's/ServerActive=127.0.0.1/ServerActive=192.168.0.1/' /etc/zabbix/zabbix_agentd.conf
+    - name: change zabbix conf3
+      command: sed -i "s/Hostname=Zabbix server/Hostname=cdn-192-168-0-1/"  /etc/zabbix/zabbix_agentd.conf
+    - name: change zabbix conf4
+      command: sed -i "s/#EnableRemoteCommands=0/EnableRemoteCommands=1/"  /etc/zabbix/zabbix_agentd.conf
+    - name: start zabbix agent
+      service:
+        name: zabbix-agent
+        state: started
+    - name: start zabbix enable
+      service:
+        name: zabbix-agent
+        enabled: yes
+    - name: install chronyd
+      yum:
+        name: chrony
+        state: present
+    - name: start chrony agent
+      service:
+        name: chronyd.service
+        state: started
+    - name: start chrony enable
+      service:
+        name: chronyd.service
+        enabled: yes
+    - name:  mkdir script
+      file:
+        path: /etc/zabbix/{{item}}
+        state: directory
+      with_items:
+        - script
+    - name: cp script
+      unarchive:
+        src: /etc/ansible/file/script.tgz
+        dest: /etc/zabbix/script/
+    - name: cp zabbix_agentd
+      unarchive:
+        src: /etc/ansible/file/zabbix_agentd.tgz
+        dest: /etc/zabbix/zabbix_agentd.d/

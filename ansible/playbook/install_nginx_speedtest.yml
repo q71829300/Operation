@@ -1,0 +1,17 @@
+---
+- hosts: newcdn
+  tasks:
+    - name:  install nginx
+      yum: name=nginx state=latest
+    - name: Copy nginx.conf
+      copy:
+        src: /etc/ansible/file/nginx.conf
+        dest: /etc/nginx/
+    - name: untar
+      unarchive:
+        src: /etc/ansible/file/speedtest.tgz
+        dest: /usr/share/nginx/html/
+    - name: start nginx
+      service:
+        name: nginx
+        state: started
