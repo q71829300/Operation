@@ -1,0 +1,24 @@
+腳本各用途:
+list_zabbix.sh:              確認各檢察平台的port是否開啟，以及開啟時觸發tg告警
+list_chekc_cron.sh:          確認執行 list_zabbix.sh 的crontab是否正常運作
+scan_port_action_again.sh:   確認 list_zabbix.sh 是否有完整執行，如:是否執行到一半中止或執行過久失敗等
+list.sh:                     新增、刪除偵掃名單或是手動做特定port的偵掃
+
+目錄各用途:
+server:所有源站的清單
+
+server_iplist.txt   所有源站的ip清單
+server_namelist.txt 所有源站的name清單
+server_portlist.txt 所有源站的port清單
+
+cdn:所有CDN站的清單
+
+cdn_iplist.txt      所有cdn的ip清單
+cdn_namelist.txt    所有cdn的name清單
+cdn_portlist.txt    所有cdn的port清單
+
+robot:其他的清單
+
+robot_iplist.txt    所有robot的ip清單
+robot_namelist.txt  所有robot的name清單
+robot_portlist.txt  所有robot的port清單
